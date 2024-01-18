@@ -1,3 +1,4 @@
+import { UTCDate } from "@date-fns/utc";
 import { z } from "zod";
 
 export const recordSchema = z.object({
@@ -13,8 +14,8 @@ export const recordSchema = z.object({
   blocktime: z.number().optional(),
   txid: z.string(),
   walletconflicts: z.array(z.unknown()),
-  time: z.number().transform((n) => new Date(n * 1000).toISOString()), // convert time to UTC
-  timereceived: z.number().transform((n) => new Date(n * 1000).toISOString()), // convert time to UTC
+  time: z.number().transform((n) => new UTCDate(n * 1000)), // convert time to UTC
+  timereceived: z.number().transform((n) => new Date(n * 1000)), // convert time to UTC
   "bip125-replaceable": z.string().optional(),
   abandoned: z.boolean().optional(),
 });

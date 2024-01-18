@@ -4,9 +4,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { useJi } from "@/ji-context";
 import { useState } from "react";
 import { ZodError } from "zod";
+import testJson from "../../test.json";
 
 export default function JsonForm() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(JSON.stringify(testJson, null, 2));
   const ji = useJi();
 
   return (

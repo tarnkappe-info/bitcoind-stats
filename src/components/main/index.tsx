@@ -1,13 +1,31 @@
+import { Button } from "@/components/ui/button";
 import { useJi } from "@/ji-context";
+import { ArrowLeft } from "lucide-react";
+import JiChart from "./chart";
 import JsonForm from "./json-form";
 
 export default function Main() {
-  const { json } = useJi();
+  const { json, removeJson } = useJi();
 
   return (
     <div className="flex w-full flex-col bg-white p-5 shadow">
-      <div></div>
-      {json ? <pre>{JSON.stringify(json, null, 2)}</pre> : <JsonForm />}
+      {json ? (
+        <>
+          <div className="mb-3 flex flex-row items-center space-x-2">
+            <div>
+              <Button variant="outline" onClick={removeJson}>
+                <ArrowLeft size="18" className="mr-2" /> Reset
+              </Button>
+            </div>
+            <div></div>
+          </div>
+          <div className="flex w-full flex-row justify-center">
+            <JiChart />
+          </div>
+        </>
+      ) : (
+        <JsonForm />
+      )}
     </div>
   );
 }
