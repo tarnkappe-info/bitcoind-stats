@@ -119,7 +119,12 @@ export default function JiChart() {
               tickFormatter={(time) => format(time, "dd MMM yyyy")}
             />
             <YAxis />
-            <Tooltip />
+            <Tooltip
+              formatter={(v, n) => [
+                typeof v === "number" ? v.toFixed(8) : v,
+                typeof n === "string" ? startCase(n) : n,
+              ]}
+            />
             <Legend formatter={(value) => startCase(value)} />
             {filters.showSent ? (
               <Line type="monotone" dataKey="amountSent" stroke="#8884d8" />
