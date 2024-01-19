@@ -6,7 +6,6 @@ import { useJson } from "@/ji-context";
 import { cn } from "@/lib/utils";
 import { validate } from "bitcoin-address-validation";
 import { format } from "date-fns/format";
-import startCase from "lodash.startcase";
 import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 import {
@@ -36,8 +35,8 @@ export default function JiChart() {
   });
 
   let data = result.map((item) => ({
-    amountSent: item.category === "send" ? item.amount : 0,
-    amountReceived: item.category === "receive" ? item.amount : 0,
+    amountSent: item.category === "send" ? item.amount : null,
+    amountReceived: item.category === "receive" ? item.amount : null,
     time: item.time,
     wallet: item.address,
   }));
@@ -110,27 +109,42 @@ export default function JiChart() {
       <div className="h-[800px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="10" />
             <XAxis
               dataKey="time"
               type="category"
               tick={{ fontSize: 12 }}
               textAnchor="end"
               tickFormatter={(time) => format(time, "dd MMM yyyy")}
+              label={{
+                value: "UTC Time",
+                position: "insideBottom",
+                offset: -5,
+              }}
+              padding={{ left: 30, right: 30 }}
             />
-            <YAxis />
-            <Tooltip
-              formatter={(v, n) => [
-                typeof v === "number" ? v.toFixed(8) : v,
-                typeof n === "string" ? startCase(n) : n,
-              ]}
+            <YAxis
+              label={{ value: "BTC", angle: -90, position: "insideLeft" }}
             />
-            <Legend formatter={(value) => startCase(value)} />
+            <Tooltip />
+            <Legend wrapperStyle={{ bottom: 0, paddingTop: 5 }} />
             {filters.showSent ? (
-              <Line type="monotone" dataKey="amountSent" stroke="#8884d8" />
+              <Line
+                name="Amount Sent"
+                type="monotone"
+                dataKey="amountSent"
+                stroke="#8884d8"
+                connectNulls
+              />
             ) : null}
             {filters.showReceived ? (
-              <Line type="monotone" dataKey="amountReceived" stroke="#82ca9d" />
+              <Line
+                name="Amount Received"
+                type="monotone"
+                dataKey="amountReceived"
+                stroke="#82ca9d"
+                connectNulls
+              />
             ) : null}
           </LineChart>
         </ResponsiveContainer>
