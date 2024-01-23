@@ -61,8 +61,6 @@ export default function JiVis() {
     }
   }, [result, filters]);
 
-  console.log("Vis");
-
   return (
     <div className="flex w-full flex-col space-y-2">
       <div className="mb-3 flex flex-row items-center space-x-2">
