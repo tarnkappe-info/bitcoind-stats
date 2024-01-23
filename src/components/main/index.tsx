@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useJi } from "@/ji-context";
 import { ArrowLeft } from "lucide-react";
-import JiChart from "./chart";
 import JsonForm from "./json-form";
+import JiVis from "./vis";
 
 export default function Main() {
   const { json, removeJson } = useJi();
@@ -20,7 +20,7 @@ export default function Main() {
             <div></div>
           </div>
           <div className="flex w-full flex-row justify-center">
-            <JiChart />
+            <JiVis />
           </div>
         </>
       ) : (
