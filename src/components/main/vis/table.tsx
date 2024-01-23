@@ -18,7 +18,7 @@ export default function JiOverviewTable({ data }: { data: MappedData[] }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Date</TableHead>
+            <TableHead>Date (UTC)</TableHead>
             <TableHead>Wallet</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Txid</TableHead>
