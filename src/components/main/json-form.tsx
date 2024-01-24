@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useJi } from "@/ji-context";
 import { useState } from "react";
 import { ZodError } from "zod";
+import { Input } from "../ui/input";
 
 export default function JsonForm() {
   const [value, setValue] = useState("");
@@ -20,7 +21,12 @@ export default function JsonForm() {
         </div>
       ) : null}
       <div className="w-full">
-        <Label htmlFor="json">JSON</Label>
+        <div className="mb-2 flex flex-row items-center">
+          <Label htmlFor="json">JSON</Label>
+          <div className="ml-2">
+            <SetByUpload />
+          </div>
+        </div>
         <Textarea
           id="json"
           value={value}
@@ -59,4 +65,24 @@ const JiError = ({ error }: { error: unknown }) => {
     return <p>{error.message}</p>;
   }
   return <pre>{JSON.stringify(error, null, 2)}</pre>;
+};
+
+const SetByUpload = () => {
+  const ji = useJi();
+  return (
+    <Input
+      type="file"
+      onChange={({ target: { files } }) => {
+        const file = files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const text = reader.result;
+          if (typeof text !== "string") return;
+          ji.setValue(text);
+        };
+        reader.readAsText(file);
+      }}
+    />
+  );
 };

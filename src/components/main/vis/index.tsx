@@ -1,12 +1,11 @@
 import { DatePickerWithRange } from "@/components/date-range-picker";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useJson } from "@/ji-context";
 import { cn } from "@/lib/utils";
 import type { UTCDate } from "@date-fns/utc";
-import { ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import validate from "bitcoin-address-validation";
 import { useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
@@ -66,26 +65,31 @@ export default function JiVis() {
       <div className="mb-3 flex flex-row items-center space-x-2">
         <div className="flex max-w-xs flex-row items-center justify-start space-x-2">
           <Label>Transaction Type</Label>
-          <ToggleGroup
-            className="justify-start"
-            variant="outline"
-            onValueChange={(value) =>
-              setFilters({
-                ...filters,
-                showSent: value.includes("showSent"),
-                showReceived: value.includes("showReceived"),
-              })
-            }
-            value={["showSent", "showReceived"].filter((value) => {
-              if (value === "showSent") return filters.showSent;
-              if (value === "showReceived") return filters.showReceived;
-              return false;
-            })}
-            type="multiple"
-          >
-            <ToggleGroupItem value="showSent">Sent</ToggleGroupItem>
-            <ToggleGroupItem value="showReceived"> Received</ToggleGroupItem>
-          </ToggleGroup>
+          <ul className="flex flex-col space-y-2 px-2">
+            <li className="flex items-center space-x-2">
+              <Checkbox
+                id="showSent"
+                checked={filters.showSent}
+                onCheckedChange={(showSent) =>
+                  setFilters({ ...filters, showSent: showSent === true })
+                }
+              />
+              <Label htmlFor="showSent">Sent</Label>
+            </li>
+            <li className="flex items-center space-x-2">
+              <Checkbox
+                id="showReceived"
+                checked={filters.showReceived}
+                onCheckedChange={(showReceived) =>
+                  setFilters({
+                    ...filters,
+                    showReceived: showReceived === true,
+                  })
+                }
+              />
+              <Label htmlFor="showReceived">Received</Label>
+            </li>
+          </ul>
         </div>
         <Separator orientation="vertical" />
         <div className="flex w-full max-w-xs flex-row items-center justify-start space-x-2">
@@ -103,7 +107,7 @@ export default function JiVis() {
         </div>
         <Separator orientation="vertical" />
         <div className="flex flex-row items-center justify-start space-x-2">
-          <Label>Date</Label>
+          <Label>Daterange</Label>
           <DatePickerWithRange
             date={filters.date}
             setDate={(date) => setFilters({ ...filters, date })}
