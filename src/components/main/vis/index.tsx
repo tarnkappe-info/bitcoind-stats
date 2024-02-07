@@ -115,7 +115,7 @@ export default function JiVis() {
         </div>
       </div>
       <JiChart data={data} filters={filters} />
-      <JiOverviewTable data={data} />
+      <JiOverviewTable data={[...data].reverse()} />
     </div>
   );
 }

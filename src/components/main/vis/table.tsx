@@ -27,7 +27,7 @@ export default function JiOverviewTable({ data }: { data: MappedData[] }) {
         <TableBody>
           {data.map((item, i) => (
             <TableRow key={i}>
-              <TableCell>{format(item.time, "dd/MMM/yyyy - p")}</TableCell>
+              <TableCell>{format(item.time, "dd.MM.yyyy - p")}</TableCell>
               <TableCell>{item.wallet}</TableCell>
               <TableCell>{item.amountSent ?? item.amountReceived}</TableCell>
               <TableCell>{item.txid}</TableCell>
