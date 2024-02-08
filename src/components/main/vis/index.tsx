@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
 import JiChart from "./chart";
 import JiOverviewTable from "./table";
+import { Totals } from "./totals";
 
 export type Filters = {
   showSent: boolean;
@@ -62,7 +63,7 @@ export default function JiVis() {
 
   return (
     <div className="flex w-full flex-col space-y-2">
-      <div className="mb-3 flex flex-row items-center space-x-2">
+      <div className="mb-5 flex flex-row items-center space-x-2">
         <div className="flex max-w-xs flex-row items-center justify-start space-x-2">
           <Label>Transaction Type</Label>
           <ul className="flex flex-col space-y-2 px-2">
@@ -114,6 +115,7 @@ export default function JiVis() {
           />
         </div>
       </div>
+      <Totals data={data} />
       <JiChart data={data} filters={filters} />
       <JiOverviewTable data={[...data].reverse()} />
     </div>
