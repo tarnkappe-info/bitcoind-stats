@@ -24,8 +24,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <footer data-nosnippet className="footer_tk-bottom">
               <div>
-                  <p><a href="https://tarnkappe.info/impressum">Impressum</a> <a href="https://tarnkappe.info/datenschutzerklaerung">Datenschutz</a></p>
-                  <p>2014-<span>2024</span> Tarnkappe.info</p>
+                  <p>Source code available on <a href="https://github.com/tarnkappe-info/bitcoind-stats">github</a>.</p>
+                  <p className="grey"><a href="https://tarnkappe.info/impressum">Impressum</a> <a href="https://tarnkappe.info/datenschutzerklaerung">Datenschutz</a></p>
+                  <p className="grey">2014-<span>2024</span> Tarnkappe.info</p>
                   <a href="https://tarnkappe.info/ueber-tarnkappe/"><img className="logo" loading="lazy" src="https://tarnkappe.info/wp-content/uploads/website-header-no-motto-klein.png" alt="Tarnkappe.info Logo"></img></a>
               </div>
           </footer>

@@ -21,7 +21,8 @@
 }
 
 
-.footer_tk-bottom {padding-bottom: 20px; padding-bottom: 20px; zoom: 1; display: block; z-index: 50; background: #282828; color: #777; width: 100%; text-align: center;  z-index: 50; display: flex; justify-content: center; align-items: center; border-top: 1px solid #333; font-size: 14px; line-height: 1.5em; }
+.footer_tk-bottom {padding-bottom: 20px; padding-bottom: 20px; zoom: 1; display: block; z-index: 50; background: #282828; color: #fff; width: 100%; text-align: center;  z-index: 50; display: flex; justify-content: center; align-items: center; border-top: 1px solid #333; font-size: 14px; line-height: 1.5em; }
+.footer_tk-bottom .grey {color: #777}
 .footer_tk-bottom a { color: #fff; }
 .footer_tk-bottom a:hover { color: #fff; }
 .footer_tk-bottom .copyright { color: #fff; font-size: 14px; line-height: 1.5em; }
