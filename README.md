@@ -10,3 +10,5 @@
 ### Important
 
 **Note**: A better way is to not use `serve` and use nginx to deliver static resources (from dist directory). It's considered faster.
+
+To use this programm you have to use the listtransactions rpc command and copy the output into the textfield
